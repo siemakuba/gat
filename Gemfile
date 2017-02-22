@@ -9,6 +9,10 @@ group :development do
   gem 'spring'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+end
+
 group :test do
-  gem 'rspec', '~> 3.5'
+  gem 'database_cleaner'
 end
