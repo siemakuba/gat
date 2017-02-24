@@ -1,28 +1,17 @@
-== README
+## GAT dev test
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Prepare & seed database, than run rspec.
 
-Things you may want to cover:
+### Private API:
 
-* Ruby version
+* GET /api/internal/locations/:country_code
+* GET /api/internal/:country_code
+* POST /api/internal/evaluate_target
 
-* System dependencies
+Private API requires authentication with an AuthKey.
+AuthKey value is specified in [config/api.yml](https://github.com/siemakuba/gat/blob/master/config/api.yml). Key needs to be passed with every request as an additional request header named: `X-InternalApiAuthKey`.
 
-* Configuration
+### Public API:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* GET /api/v1/locations/:country_code
+* GET /api/v1/:country_code
