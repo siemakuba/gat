@@ -31,5 +31,8 @@ module Gat
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # custom config
+    config.api = config_for(:api)
   end
 end

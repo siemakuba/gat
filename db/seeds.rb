@@ -17,16 +17,18 @@ cities = %w{
   Madrid Ankara Moscow Dublin Reykjavik
 }
 
-Location.create(cities.map { |city| { name: city } })
+locations = Location.create(cities.map { |city| { name: city } })
 
 target_groups = []
 
 Array(panel_providers << panel_providers.sample).each do |panel_provider|
-  LocationGroup.create(
+  location_group = LocationGroup.create(
     name: "Group for PanelProvider##{panel_provider.id}",
     country: panel_provider.countries.sample,
     panel_provider: panel_provider
   )
+
+  location_group.locations << locations.sample(5)
 
   target_groups << TargetGroup.create(
     name: "Group for PanelProvider##{panel_provider.id}",

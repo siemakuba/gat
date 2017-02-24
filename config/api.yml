@@ -1,0 +1,10 @@
+development: &development
+  auth_key: 'foobarbaz'
+
+test:
+  <<: *development
+
+production:
+  <<: *development
+
+
