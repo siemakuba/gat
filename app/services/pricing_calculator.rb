@@ -1,14 +1,12 @@
 class PricingCalculator
-  def initialize(base_price:, pricing_strategy:)
-    @base_price = base_price
-    @pricing_strategy = pricing_strategy
+  def initialize(pricing_factor)
+    @pricing_factor = pricing_factor
   end
 
-  def calculate
-    base_price * pricing_strategy_factor
+  def calculate(panel_size: 0)
+    (panel_size.to_i * pricing_factor.to_f).round(2)
   end
 
   private
-  attr_reader :base_price, :pricing_strategy
-  delegate :factor, to: :pricing_strategy, prefix: true
+  attr_reader :pricing_factor
 end

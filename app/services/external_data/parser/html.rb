@@ -1,6 +1,6 @@
 module ExternalData
   module Parser
-    class HTML < Base
+    class Html < Base
 
       private
 

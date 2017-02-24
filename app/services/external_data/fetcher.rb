@@ -2,12 +2,12 @@ module ExternalData
   class Fetcher
     OK_RESPONSE_CODE = 200
 
-    def initialize(source:, parser: ExternalData::Parser::HTML.new)
+    def initialize(source:, parser: ExternalData::Parser::Html.new)
       @source = source
       @parser = parser
     end
 
-    def fetch
+    def perform
       parsed_response_data if success?
     end
 

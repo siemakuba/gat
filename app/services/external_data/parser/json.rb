@@ -1,6 +1,6 @@
 module ExternalData
   module Parser
-    class JSON < Base
+    class Json < Base
 
       private
 
