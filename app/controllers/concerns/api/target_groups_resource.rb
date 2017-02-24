@@ -1,18 +1,13 @@
 module Api
   module TargetGroupsResource
     def show
-      response = ApiResponse::Success.new(target_groups_collection)
-      api_response(response)
+      api_respond_with ApiResponse::Success.new(target_groups_collection)
     end
 
     private
 
     def target_groups_collection
-      ApiData::TargetGroupsByCountryCollection.new(country_code)
-    end
-
-    def country_code
-      params.permit(:country_code).fetch(:country_code)
+      ApiData::TargetGroupsByCountryCollection.new(params[:country_code])
     end
   end
 end

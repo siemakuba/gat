@@ -1,26 +1,22 @@
 module ApiData
-  class PricingEvaluation < Base
+  class PricingEvaluation
 
-    def initialize(params:, pricing_factor:, pricing_calculator:)
+    def initialize(params:, pricing_calculator:)
       @params = params
-      @pricing_factor = pricing_factor
       @pricing_calculator = pricing_calculator
     end
 
-    private
-    attr_reader :params, :pricing_factor, :pricing_calculator
-
-    def collection_data
-      {
-        country_code: params[:country_code],
-        target_group_id: params[:target_group_id],
-        locations: params[:locations],
-        calculated_prices: calculated_prices_data
-      }
+    def data
+      params.merge(calculated_prices: calculated_prices_data)
     end
 
+    alias_method :to_hash, :data
+
+    private
+    attr_reader :params, :pricing_calculator
+
     def calculated_prices_data
-      params[:locations].map do |location|
+      locations.map do |location|
         price = pricing_calculator.calculate(
           panel_size: location[:panel_size]
         )
@@ -28,8 +24,8 @@ module ApiData
       end
     end
 
-    def country
-      @country ||= Country.by_country_code(params[:country_code]).first!
+    def locations
+      Array(params[:locations])
     end
   end
 end

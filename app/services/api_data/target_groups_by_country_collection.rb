@@ -1,8 +1,14 @@
 module ApiData
-  class TargetGroupsByCountryCollection < Base
+  class TargetGroupsByCountryCollection
+    include Enumerable
+    alias_method :to_hash, :to_h
 
     def initialize(country_code)
       @country_code = country_code
+    end
+
+    def each(&block)
+      collection_data.each(&block)
     end
 
     private

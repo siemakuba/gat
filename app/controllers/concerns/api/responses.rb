@@ -4,14 +4,13 @@ module Api
 
     included do
       rescue_from StandardError do |exception|
-        response = ApiResponse::Exception.new(exception)
-        api_response(response)
+        api_respond_with ApiResponse::Exception.new(exception)
       end
     end
 
     private
 
-    def api_response(response)
+    def api_respond_with(response)
       render json: response.to_json, status: response.status and return
     end
   end

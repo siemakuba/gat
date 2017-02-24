@@ -28,7 +28,7 @@ module PricingStrategyFactorCalculator
     def values
       @values ||= begin
         method_name = self.class.name.demodulize.downcase
-        PricingStrategyValues.send(method_name)
+        PricingStrategies.send(method_name)
       end
     end
   end

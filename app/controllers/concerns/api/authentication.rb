@@ -4,8 +4,7 @@ module Api
 
     included do
       rescue_from UnauthorizedRequest do
-        response = ApiResponse::Unauthorized.new(auth_key)
-        api_response(response)
+        api_respond_with ApiResponse::Unauthorized.new(auth_key)
       end
 
       before_filter :authenticate_request!
@@ -26,6 +25,5 @@ module Api
     end
   end
 end
-
 
 class UnauthorizedRequest < StandardError; end

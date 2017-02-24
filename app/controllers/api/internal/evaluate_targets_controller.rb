@@ -6,7 +6,6 @@ module Api
           pricing_factor = PricingEvaluator.new(country_code: evaluation_params[:country_code]).perform
           evaluation_data = ApiData::PricingEvaluation.new(
             params: evaluation_params,
-            pricing_factor: pricing_factor,
             pricing_calculator: PricingCalculator.new(pricing_factor)
           )
 
@@ -15,15 +14,13 @@ module Api
           ApiResponse::Errors.new(validator.errors.full_messages)
         end
 
-        api_response(response)
+        api_respond_with response
       end
 
       private
 
       def validator
-        @validator ||= EvaluationParamsValidator.new(
-          *evaluation_params.values
-        )
+        @validator ||= EvaluationParamsValidator.new(*evaluation_params.values)
       end
 
       def evaluation_params

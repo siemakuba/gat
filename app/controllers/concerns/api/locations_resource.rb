@@ -1,18 +1,13 @@
 module Api
   module LocationsResource
     def show
-      response = ApiResponse::Success.new(locations_collection)
-      api_response(response)
+      api_respond_with ApiResponse::Success.new(locations_collection)
     end
 
     private
 
     def locations_collection
-      ApiData::LocationsByCountryCollection.new(country_code)
-    end
-
-    def country_code
-      params.permit(:country_code).fetch(:country_code)
+      ApiData::LocationsByCountryCollection.new(params[:country_code])
     end
   end
 end

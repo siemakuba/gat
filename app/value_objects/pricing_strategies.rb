@@ -1,4 +1,4 @@
-class PricingStrategyValues
+class PricingStrategies
 
   class Values < Struct.new(:divider, :pattern, :precision)
   end
